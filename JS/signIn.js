@@ -6,7 +6,7 @@ $(document).ready(function() {
     }
 });
 
-function signIn() {
+function userLogin() {
     const errorMessage = document.getElementById('signInErrorMessage');
     errorMessage.textContent = '';
 
@@ -15,7 +15,7 @@ function signIn() {
         errorMessage.textContent = 'Please specify your email';
         return;
     }
-    if (!isValidEmail(email)) {name
+    if (!isValidEmail(email)) {
         errorMessage.textContent = 'Email format is incorrect';
         return;
     }
@@ -30,7 +30,7 @@ function signIn() {
         email: email,
         password: password
     };
-    var apiUrl = 'http://localhost:8080/OnlineStoreAppBackendAPI/webapi/myresource/customerLogin';
+    var apiUrl = 'http://localhost:8080/JobPortalBackend/webapi/myresource/userLogin';
 
     $.ajax({
         url: apiUrl,
@@ -38,18 +38,17 @@ function signIn() {
         contentType: 'application/json',
         data: JSON.stringify(formData),
         success: function(response) {
-            if (response.customerId !== undefined) {
+            if (response.userId !== undefined) {
                 document.getElementById('signin_email').value = '';
                 document.getElementById('signin_password').value = '';
                 saveSignedInUser(response);
 
-                window.location = 'index.html';
+                window.location = "index.html";
             } else {
                 errorMessage.textContent = 'Log in failed';
             }
         },
         error: function(xhr, status, error) {
-            // Handle error
             errorMessage.textContent = 'Error: ' + error;
         }
     });

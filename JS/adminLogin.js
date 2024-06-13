@@ -1,11 +1,11 @@
 $(document).ready(function() {
-    const signedInManager = localStorage.getItem('signedInManager');
-    if (signedInManager !== null) {
-        window.location = "managerFunctionalities.html";
+    const signedInAdmin = localStorage.getItem('signedInAdmin');
+    if (signedInAdmin !== null) {
+        window.location = "AdminFunctionalities.html";
     }
 });
 
-function signInAsManager() {
+function adminLogin() {
     const errorMessage = document.getElementById('signInErrorMessage');
     errorMessage.textContent = '';
 
@@ -31,23 +31,22 @@ function signInAsManager() {
     };
 
     $.ajax({
-        url: 'http://localhost:8080/OnlineStoreAppBackendAPI/webapi/myresource/managerLogin',
+        url: 'http://localhost:8080/JobPortalBackend/webapi/myresource/adminLogin',
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(formData),
         success: function(response) {
-            if (response.signedInManager === undefined) {
+            if (response.signedInAdmin === undefined) {
                 $('#apiResponse').html("Log in failed");
             } else {
-                saveToLocalStorage("signedInManager", response.signedInManager);
+                saveToLocalStorage("signedInAdmin", response.signedInAdmin);
                 document.getElementById("signin_email").value = "";
                 document.getElementById("signin_password").value = "";
                 $('#apiResponse').html('Login Successful');
-                window.location = "managerFunctionalities.html";
+                window.location = "AdminFunctionalities.html";
             }
         },
         error: function(xhr, status, error) {
-            // Handle error
             $('#apiResponse').css('color', 'red');
             $('#apiResponse').html('Error: ' + error);
         }
