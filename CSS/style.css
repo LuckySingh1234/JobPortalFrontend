@@ -1,0 +1,93 @@
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    text-decoration-color: none;
+}
+
+.nav-link {
+    color : #fff !important;
+}
+
+.nav-link:hover {
+    color:rgba(255,255,255,.5) !important;
+}
+
+.white-text {
+    color: #fff !important;
+}
+
+ul a {
+    text-decoration: none;
+    color: white;
+}
+
+.dropdown-menu {
+    background-color: #007bff;
+    border: none;
+}
+
+.dropdown-item:hover {
+    background-color: red;
+}
+
+.category-link:hover {
+    color:  greenyellow;
+}
+
+[role=button]{cursor:pointer}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+th, td {
+    border: 1px solid #e4e3e3;
+    padding-left: 10px;
+}
+
+.quantity-btn {
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    background-color: transparent;
+}
+
+.decrease-btn {
+    color: #ff5733; /* Red color for decrease button */
+}
+
+.increase-btn {
+    color: #33ff77; /* Green color for increase button */
+}
+
+#cart-alert {
+    position: relative;
+    top: 100px;
+    z-index: 100;
+}
+
+#productAdditionSuccessAlert, #productAdditionFailureAlert {
+    position: fixed;
+    top: 550px;
+    width: 50%;
+    margin-left: 10%;
+}
