@@ -23,7 +23,9 @@ $(document).ready(function() {
                     `;
                     allCardsContainer.innerHTML += cardHtml;
                 });
-                allCardsContainer.innerHTML += `
+                const signedInAdmin = localStorage.getItem('signedInAdmin');
+                if (signedInAdmin !== null) {
+                    allCardsContainer.innerHTML += `
                     <div class="col-md-3 mb-5 ml-5">
                         <div class="addCard" onclick="handleClick()">
                             <b></b>
@@ -32,7 +34,8 @@ $(document).ready(function() {
                             </div>
                         </div>
                     </div>
-                `;
+                `;   
+                }
             }
         },
         error: function(xhr, status, error) {

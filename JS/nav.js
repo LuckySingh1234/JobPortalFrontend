@@ -11,7 +11,7 @@ $(document).ready(function() {
     // const managerLoginBtn = document.getElementById('managerLoginBtn');
     const adminProfileBtn = document.getElementById('adminProfileBtn');
 
-    const name = document.getElementById('name');
+    // const name = document.getElementById('name');
     const mobile = document.getElementById('mobile');
     const email = document.getElementById('email');
     const adminEmail = document.getElementById('adminEmail');

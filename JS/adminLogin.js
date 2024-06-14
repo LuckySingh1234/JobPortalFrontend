@@ -1,7 +1,7 @@
 $(document).ready(function() {
     const signedInAdmin = localStorage.getItem('signedInAdmin');
     if (signedInAdmin !== null) {
-        window.location = "AdminFunctionalities.html";
+        window.location = "index.html";
     }
 });
 

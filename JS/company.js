@@ -1,4 +1,9 @@
 $(document).ready(function() {
+    const successAlert = document.getElementById('successAlert');
+    const failureAlert = document.getElementById('failureAlert');
+    successAlert.style.display = 'none';
+    failureAlert.style.display = 'none';
+
     var params = new URLSearchParams(window.location.search);
     var companyId = params.get('id');
     var apiUrl = 'http://localhost:8080/JobPortalBackend/webapi/myresource/getCompanyById';
@@ -55,7 +60,7 @@ function fetchAllJobsByCompanyId(companyId) {
                                     </button>
                                 </h2>
                             </div>
-                            <div id="${changedJobId}" class="collapse show" aria-labelledby="headingOne" data-parent="#jobAccordion">
+                            <div id="${changedJobId}" class="collapse jobId" aria-labelledby="headingOne" data-parent="#jobAccordion">
                             <div class="card-body">
                                 <div class="row mt-3">
                                     <div class="col-4">
@@ -83,7 +88,7 @@ function fetchAllJobsByCompanyId(companyId) {
                                         <p>${item.jobPackage}</p>
                                     </div>
                                     <div class="col-12">
-                                        <button type="button" class="btn btn-success w-100">Apply</button>
+                                        <button type="button" class="btn btn-success w-100" onclick=applyJob(this)>Apply</button>
                                     </div>
                                 </div>
                             </div>
@@ -92,21 +97,77 @@ function fetchAllJobsByCompanyId(companyId) {
                     `;
                     jobDetailsContainer.innerHTML += cardHtml;
                 });
-                jobDetailsContainer.innerHTML += `
-                    <div class="card mb-5">
-                        <div class="card-header" id="headingTwo" style="background-color: #3177e0;">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed text-center text-white font-weight-bolder" data-toggle="modal" data-target="#exampleModal" style="font-size: larger;" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseTwo">
-                            Add Job
-                            </button>
-                        </h2>
+                const signedInAdmin = localStorage.getItem('signedInAdmin');
+                if (signedInAdmin !== null) {
+                    jobDetailsContainer.innerHTML += `
+                        <div class="card mb-5">
+                            <div class="card-header" id="headingTwo" style="background-color: #3177e0;">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed text-center text-white font-weight-bolder" data-toggle="modal" data-target="#exampleModal" style="font-size: larger;" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseTwo">
+                                Add Job
+                                </button>
+                            </h2>
+                            </div>
                         </div>
-                    </div>
-                `;
+                    `;   
+                }
             }
         },
         error: function(xhr, status, error) {
             $('#result').html('<p>An error occurred: ' + error + '</p>');
         }
     });
+}
+
+function applyJob(applyJobBtn) {
+    const successAlert = document.getElementById('successAlert');
+    const failureAlert = document.getElementById('failureAlert');
+    successAlert.style.display = 'none';
+    failureAlert.style.display = 'none';
+
+    const card = applyJobBtn.closest('.card');
+    const jobId = card.querySelector('.jobId').id.replace('-', '#');
+    
+    const userId = JSON.parse(localStorage.getItem('signedInUser')).userId;
+
+    const formData = {
+        jobId: jobId,
+        userId: userId
+    }
+
+    $.ajax({
+        url: 'http://localhost:8080/JobPortalBackend/webapi/myresource/applyJob',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(formData),
+        success: function(response) {
+            if (response.success === 'true') {
+                successAlert.innerText = 'You have Successfully Applied to this Job';
+                successAlert.style.display = 'block';
+                setTimeout(function() {
+                    dismissAlert('successAlert')
+                }, 1000);
+            } else {
+                failureAlert.innerText = response.errorMessage;
+                failureAlert.style.display = 'block';
+                setTimeout(function() {
+                    dismissAlert('failureAlert')
+                }, 1000);
+            }
+        },
+        error: function(xhr, status, error) {
+            failureAlert.innerText = 'Error: ' + error;
+            failureAlert.style.display = 'block';
+            setTimeout(function() {
+                dismissAlert('failureAlert')
+            }, 1000);
+        }
+    });
+}
+
+function dismissAlert(alertId) {
+    var alert = document.getElementById(alertId);
+    setTimeout(function() {
+        alert.style.display = 'none';
+    })
 }
