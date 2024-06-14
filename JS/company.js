@@ -88,7 +88,7 @@ function fetchAllJobsByCompanyId(companyId) {
                                         <p>${item.jobPackage}</p>
                                     </div>
                                     <div class="col-12">
-                                        <button type="button" class="btn btn-success w-100" onclick=applyJob(this)>Apply</button>
+                                        <button type="button" class="btn btn-success w-100 jobApplyBtn" onclick=applyJob(this)>Apply</button>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,12 @@ function fetchAllJobsByCompanyId(companyId) {
                             </h2>
                             </div>
                         </div>
-                    `;   
+                    `;
+                    const jobApplyButtons = document.getElementsByClassName('jobApplyBtn');
+                    const buttonsArray = Array.from(jobApplyButtons);
+                    buttonsArray.forEach(element => {
+                        element.style.display = 'none';
+                    });
                 }
             }
         },
@@ -124,6 +129,12 @@ function applyJob(applyJobBtn) {
     const failureAlert = document.getElementById('failureAlert');
     successAlert.style.display = 'none';
     failureAlert.style.display = 'none';
+
+    let signedInUser = localStorage.getItem('signedInUser');
+    if (signedInUser === null) {
+        window.location = "signin.html";
+        return;
+    }
 
     const card = applyJobBtn.closest('.card');
     const jobId = card.querySelector('.jobId').id.replace('-', '#');
