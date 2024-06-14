@@ -1,0 +1,66 @@
+.addCard {
+    position: relative;
+    width: 285px;
+    height: 381px;
+    background: #f00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.addCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(315deg,#03a9f4,#ff0058);
+}
+
+.addCard::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(315deg,#03a9f4,#ff0058);
+    filter: blur(30px);
+}
+
+.addCard b {
+    position: absolute;
+    inset: 6px;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+}
+
+.addCard .content {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content .title {
+    position: relative;
+    color: #fff;
+    font-weight: 700;
+    font-size: 8em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.content .title span {
+    font-weight: 300;
+    font-size: 0.70em;
+}
+
+.addCard:hover {
+    transform: scale(1.05);
+}
