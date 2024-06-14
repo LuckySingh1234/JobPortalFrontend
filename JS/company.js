@@ -118,6 +118,9 @@ function renderJobs(response) {
                                 <div class="col-12">
                                     <button type="button" class="btn btn-success w-100 jobApplyBtn" onclick=applyJob(this)>Apply</button>
                                 </div>
+                                <div class="col-12">
+                                    <button style="display: none;" type="button" class="btn btn-danger w-100 jobRemoveBtn" onclick=removeJob(this)>Remove</button>
+                                </div>
                             </div>
                         </div>
                         </div>
@@ -148,6 +151,13 @@ function renderJobs(response) {
             const buttonsArray = Array.from(jobApplyButtons);
             buttonsArray.forEach(element => {
                 element.style.display = 'none';
+            });
+        }
+        if (signedInAdmin !== null) {
+            const jobRemoveButtons = document.getElementsByClassName('jobRemoveBtn');
+            const buttonsArray = Array.from(jobRemoveButtons);
+            buttonsArray.forEach(element => {
+                element.style.display = 'block';
             });
         }
     }
@@ -335,6 +345,53 @@ function addJob() {
                     dismissAlert('successAlert')
                 }, 1000);
                 clearAddJobFormFields();
+                fetchAllJobsByCompanyId(companyId);
+            } else {
+                failureAlert.innerText = response.errorMessage;
+                failureAlert.style.display = 'block';
+                setTimeout(function() {
+                    dismissAlert('failureAlert')
+                }, 1000);
+            }
+        },
+        error: function(xhr, status, error) {
+            failureAlert.innerText = 'Error: ' + error;
+            failureAlert.style.display = 'block';
+            setTimeout(function() {
+                dismissAlert('failureAlert')
+            }, 1000);
+        }
+    });
+}
+
+function removeJob(removeJobBtn) {
+    const successAlert = document.getElementById('successAlert');
+    const failureAlert = document.getElementById('failureAlert');
+    successAlert.style.display = 'none';
+    failureAlert.style.display = 'none';
+
+    const card = removeJobBtn.closest('.card');
+    const jobId = card.querySelector('.jobId').id.replace('-', '#');
+    
+    const formData = {
+        jobId: jobId,
+    }
+
+    var params = new URLSearchParams(window.location.search);
+    var companyId = params.get('id');
+
+    $.ajax({
+        url: 'http://localhost:8080/JobPortalBackend/webapi/myresource/removeJob',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(formData),
+        success: function(response) {
+            if (response.success === 'true') {
+                successAlert.innerText = 'You have Successfully Removed this Job';
+                successAlert.style.display = 'block';
+                setTimeout(function() {
+                    dismissAlert('successAlert')
+                }, 1000);
                 fetchAllJobsByCompanyId(companyId);
             } else {
                 failureAlert.innerText = response.errorMessage;
