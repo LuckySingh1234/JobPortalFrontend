@@ -43,7 +43,7 @@ function adminLogin() {
                 document.getElementById("signin_email").value = "";
                 document.getElementById("signin_password").value = "";
                 $('#apiResponse').html('Login Successful');
-                window.location = "AdminFunctionalities.html";
+                window.location = "index.html";
             }
         },
         error: function(xhr, status, error) {

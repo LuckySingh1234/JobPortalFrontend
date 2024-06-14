@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     const signedInManager =  localStorage.getItem('signedInManager');
 
-    const myCartBtn = document.getElementById('mycartbtn');
+    // const myCartBtn = document.getElementById('mycartbtn');
     const signInBtn = document.getElementById('signinbtn');
     const profileBtn = document.getElementById('profileBtn');
     const signUpBtn = document.getElementById('signupbtn');

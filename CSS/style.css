@@ -63,31 +63,3 @@ th, td {
     border: 1px solid #e4e3e3;
     padding-left: 10px;
 }
-
-.quantity-btn {
-    border: none;
-    cursor: pointer;
-    font-size: 1.5em;
-    background-color: transparent;
-}
-
-.decrease-btn {
-    color: #ff5733; /* Red color for decrease button */
-}
-
-.increase-btn {
-    color: #33ff77; /* Green color for increase button */
-}
-
-#cart-alert {
-    position: relative;
-    top: 100px;
-    z-index: 100;
-}
-
-#productAdditionSuccessAlert, #productAdditionFailureAlert {
-    position: fixed;
-    top: 550px;
-    width: 50%;
-    margin-left: 10%;
-}
