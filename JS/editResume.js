@@ -1,4 +1,15 @@
 $(document).ready(function() {
+    const successAlert = document.getElementById('successAlert');
+    const failureAlert = document.getElementById('failureAlert');
+    successAlert.style.display = 'none';
+    failureAlert.style.display = 'none';
+
+    const signedInUser = localStorage.getItem('signedInUser');
+    if (signedInUser === null) {
+        window.location = "signin.html";
+        return;
+    }
+
     document.getElementById('name').addEventListener('input', function() {
         document.getElementById('display-name').innerText = this.value || 'Applicant Name';
     });
@@ -46,3 +57,75 @@ $(document).ready(function() {
         });
     });
 });
+
+function saveResume() {
+    const successAlert = document.getElementById('successAlert');
+    const failureAlert = document.getElementById('failureAlert');
+    successAlert.style.display = 'none';
+    failureAlert.style.display = 'none';
+
+    const signedInUser = localStorage.getItem('signedInUser');
+    const userId = JSON.parse(localStorage.getItem('signedInUser')).userId;
+
+    const name = document.getElementById('name').value.trim();
+    const dob = document.getElementById('dob').value.trim();
+    const email2 = document.getElementById('email2').value.trim();
+    const institutionName = document.getElementById('institutionName').value.trim();
+    const degree = document.getElementById('degree').value.trim();
+    const yearOfGraduation = document.getElementById('yearOfGraduation').value.trim();
+    const companyName = document.getElementById('companyName').value.trim();
+    const role = document.getElementById('role').value.trim();
+    const duration = document.getElementById('duration').value.trim();
+    const responsibilities = document.getElementById('responsibilities').value.trim();
+
+
+    const formData = {
+        userId: userId,
+        name: name,
+        dob: dob,
+        email: email2,
+        institutionName: institutionName,
+        degree: degree,
+        yearOfGraduation: yearOfGraduation,
+        companyName: companyName,
+        role: role,
+        duration: duration,
+        responsibilities: responsibilities
+    }
+
+    $.ajax({
+        url: 'http://localhost:8080/JobPortalBackend/webapi/myresource/saveResume',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(formData),
+        success: function(response) {
+            if (response.success === 'true') {
+                successAlert.innerText = 'You have Successfully Saved your resume';
+                successAlert.style.display = 'block';
+                setTimeout(function() {
+                    dismissAlert('successAlert')
+                }, 1000);
+            } else {
+                failureAlert.innerText = response.errorMessage;
+                failureAlert.style.display = 'block';
+                setTimeout(function() {
+                    dismissAlert('failureAlert')
+                }, 1000);
+            }
+        },
+        error: function(xhr, status, error) {
+            failureAlert.innerText = 'Error: ' + error;
+            failureAlert.style.display = 'block';
+            setTimeout(function() {
+                dismissAlert('failureAlert')
+            }, 1000);
+        }
+    });
+}
+
+function dismissAlert(alertId) {
+    var alert = document.getElementById(alertId);
+    setTimeout(function() {
+        alert.style.display = 'none';
+    })
+}

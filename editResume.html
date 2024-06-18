@@ -51,7 +51,7 @@
                                 </a>
                                 <ul class="dropdown-menu mr-auto smooth-scroll" style="width: 270px;">
                                     <li class="nav-item">
-                                        <span class="nav-link" data-offset="90"><i class="fa fa-fw fa-file"></i> <span id='resume'> Resume </span> </span>
+                                        <a class="nav-link" id="resumePageBtn" href="editResume.html" data-offset="90"><span class="nav-link" data-offset="90"><i class="fa fa-fw fa-file"></i> <span id='resume'> Resume </span> </span></a>
                                     </li>
                                     <li class="nav-item">
                                         <span class="nav-link" data-offset="90"><i class="fa fa-fw fa-phone"></i> <span id='mobile'> Mobile </span> </span>
@@ -116,7 +116,7 @@
                                     <h6>DOB </h6>
                                 </div>
                                 <div class="col-8 mt-2 mb-2">
-                                    <input type="date" id="dob" name="dob">
+                                    <input class="w-100" type="date" id="dob" name="dob">
                                 </div>
                                 <div class="col-4 mt-2">
                                     <h6>email</h6>
@@ -164,10 +164,12 @@
                                     <h6>Responsibilities </h6>
                                 </div>
                                 <div class="col-8">
-                                    <textarea class="w-100" id="responsibilities" name="responsibilities"></textarea>
+                                    <textarea class="w-100" style="height: 100px;" id="responsibilities" name="responsibilities"></textarea>
                                 </div>
                             </div>
                             <button type="button" onclick="saveResume()">Save Resume</button>
+                            <div class="alert alert-success text-center w-50" role="alert" id="successAlert" style="position: fixed; top: 100px; z-index:100; margin-left: 7%;"></div>
+                            <div class="alert alert-danger text-center w-50" role="alert" id="failureAlert" style="position: fixed; top: 100px; z-index:100; margin-left: 7%;"></div>
                         </form>
                         </div>
                         <div class="col-8">
