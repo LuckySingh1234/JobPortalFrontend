@@ -17,19 +17,15 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <!-- ----------------------------------- -->
 
-
-        <!--Linking CCustom Style-->
+        <!--Linking Custom Style-->
         <link rel="stylesheet" href="/CSS/style.css">
-        <link rel="stylesheet" href="/CSS/card.css">
-        <link rel="stylesheet" href="/CSS/addCard.css">
-
-        <!--Linking Custom JavaScript-->
-        <script src="/JS/nav.js"></script>
-        <script src="/JS/index.js"></script>
 
         <!--Link for font awesome favicons-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">        
 
+        <!-- Linking Custom JavaScript -->
+        <script src="/JS/nav.js"></script>
+        <script src="/JS/editResume.js"></script>
     </head>
 
     <body>
@@ -55,7 +51,7 @@
                                 </a>
                                 <ul class="dropdown-menu mr-auto smooth-scroll" style="width: 270px;">
                                     <li class="nav-item">
-                                        <a class="nav-link" id="resumePageBtn" href="resume.html" data-offset="90"><span class="nav-link" data-offset="90"><i class="fa fa-fw fa-file"></i> <span id='resume'> Resume </span> </span></a>
+                                        <span class="nav-link" data-offset="90"><i class="fa fa-fw fa-file"></i> <span id='resume'> Resume </span> </span>
                                     </li>
                                     <li class="nav-item">
                                         <span class="nav-link" data-offset="90"><i class="fa fa-fw fa-phone"></i> <span id='mobile'> Mobile </span> </span>
@@ -104,62 +100,106 @@
         </header>
 
         <main>
-            <section class="intro-section pt-3 mt-4">
-                <div class="container" style="margin-top: 5rem;">
-                    <div class="row" id="allCardsContainer">
-                        <!-- Add rows dynamically using DOM manipulation -->
-                    </div>
-                    <div class="alert alert-success text-center w-50" role="alert" id="successAlert" style="position: fixed; top: 100px; z-index:100; margin-left: 7%;"></div>
-                    <div class="alert alert-danger text-center w-50" role="alert" id="failureAlert" style="position: fixed; top: 100px; z-index:100; margin-left: 7%;"></div>
-                </div>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Fill Company Details Here</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container-fluid">
+            <form id="resume-form">
+                <section class="intro-section pt-3 mt-4">
+                    <div class="container resume-container" style="margin-top: 4rem;">
+                        <div class="row" style="align-items: center;">
+                            <div class="col-4">
                                 <div class="row">
                                     <div class="col-4">
-                                        <h6>Company Name</h6>
+                                    <h6>Name</h6>
                                     </div>
-                                    <div class="col-8">
-                                        <input class="w-100" type="text" id="companyName" name="companyName">
-                                    </div>
-                                    <div class="col-4 mt-2">
-                                        <h6>Company Description</h6>
-                                    </div>
-                                    <div class="col-8 mt-2">
-                                        <textarea id="companyDescription" name="companyDescription" class="w-100"></textarea>
-                                    </div>
-                                    <div class="col-4 mt-2">
-                                        <h6>Location</h6>
-                                    </div>
-                                    <div class="col-8">
-                                        <input class="w-100" type="text" id="location" name="location">
-                                    </div>
-                                    <div class="col-4 mt-2">
-                                        <h6>Image URL</h6>
-                                    </div>
-                                    <div class="col-8">
-                                        <input class="w-100" type="text" id="imageUrl" name="imageUrl">
-                                    </div>
-                              </div>
+                                <div class="col-8">
+                                    <input class="w-100" type="text" id="name" name="name">
+                                </div>
+                                <div class="col-4 mt-2">
+                                    <h6>DOB </h6>
+                                </div>
+                                <div class="col-8 mt-2 mb-2">
+                                    <input type="date" id="dob" name="dob">
+                                </div>
+                                <div class="col-4 mt-2">
+                                    <h6>email</h6>
+                                </div>
+                                <div class="col-8">
+                                    <input class="w-100" type="text" id="email2" name="email2">
+                                </div>
+                                <div class="col-4 mt-2">
+                                    <h6>InstitutionName </h6>
+                                </div>
+                                <div class="col-8">
+                                    <input class="w-100" type="text" id="institutionName" name="institutionName">
+                                </div>
+                                <div class="col-4 mt-2">
+                                    <h6>Degree </h6>
+                                </div>
+                                <div class="col-8">
+                                    <input class="w-100" type="text" id="degree" name="degree">
+                                </div>
+                                <div class="col-4 mt-2">
+                                    <h6>Year of Graduation </h6>
+                                </div>
+                                <div class="col-8">
+                                    <input class="w-100" type="text" id="yearOfGraduation" name="yearOfGraduation">
+                                </div>
+                                <div class="col-4 mt-2">
+                                    <h6>Company Name </h6>
+                                </div>
+                                <div class="col-8">
+                                    <input class="w-100" type="text" id="companyName" name="companyName">
+                                </div>
+                                <div class="col-4 mt-2">
+                                    <h6>Role </h6>
+                                </div>
+                                <div class="col-8">
+                                    <input class="w-100" type="text" id="role" name="role">
+                                </div>
+                                <div class="col-4 mt-2">
+                                    <h6>Duration </h6>
+                                </div>
+                                <div class="col-8">
+                                    <input class="w-100" type="text" id="duration" name="duration">
+                                </div>
+                                <div class="col-4 mt-2">
+                                    <h6>Responsibilities </h6>
+                                </div>
+                                <div class="col-8">
+                                    <textarea class="w-100" id="responsibilities" name="responsibilities"></textarea>
+                                </div>
+                            </div>
+                            <button type="button" onclick="saveResume()">Save Resume</button>
+                        </form>
                         </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary" onclick="addCompany()">Add Company</button>
+                        <div class="col-8">
+                            <div>
+                                <header>
+                                    <h1 id="display-name">Applicant Name</h1>
+                                    <p id="display-dob">Date of Birth: </p>
+                                    <p id="display-email">Email: </p>
+                                </header>
+                                <section>
+                                    <h2>Education</h2>
+                                    <div class="education">
+                                        <h3 id="display-institution">Institution Name</h3>
+                                        <p id="display-degree">Degree: </p>
+                                        <p id="display-grad-year">Year of Graduation: </p>
+                                    </div>
+                                </section>
+                                <section>
+                                    <h2>Experience</h2>
+                                    <div class="experience">
+                                        <h3 id="display-company">Company Name</h3>
+                                        <p id="display-role">Role: </p>
+                                        <p id="display-duration">Duration: </p>
+                                        <p>Responsibilities:</p>
+                                        <ul id="display-responsibilities"></ul>
+                                    </div>
+                                </section>
+                            </div>
                         </div>
-                      </div>
                     </div>
                 </div>
             </section>
         </main>
-
     </body>
-
 </html>
