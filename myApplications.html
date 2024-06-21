@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Applications</title>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- ----------------------------------- -->
+
+    <!--Linking Custom Style-->
+    <link rel="stylesheet" href="/CSS/style.css">
+
+    <!--Link for font awesome favicons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">        
+
+    <!-- Linking Custom JavaScript -->
+    <script src="/JS/nav.js"></script>
+    <script src="/JS/myApplications.js"></script>
+    <!-- Include DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <!-- Include DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table.dataTable {
+            width: 100%;
+            margin: 0 auto;
+        }
+        table.dataTable thead th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        table.dataTable tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        td{
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+            
+        <nav class="navbar navbar-dark navbar-expand-lg bg-primary fixed-top">
+            <div class="container">
+
+                <a class="navbar-brand white-text" href="/index.html"> JOB PORTAL </a>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mr-auto smooth-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/index.html"><i class="fa fa-fw fa-home"></i> Home </a>
+                        </li>
+                        <a href="/myApplications.html">
+                            <span class="nav-link" id="myApplicationsBtn" role="button"> <i class="fa fa-fw fa-pencil-square"></i> My Applications </span>
+                        </a>
+                        <li class="dropdown nav-item" id="profileBtn">
+                            <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#"><i class="fa fa-fw fa-user"></i> Profile
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu mr-auto smooth-scroll" style="width: 270px;">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="resumePageBtn" href="editResume.html" data-offset="90"><span class="nav-link" data-offset="90"><i class="fa fa-fw fa-file"></i> <span id='resume'> Resume </span> </span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <span class="nav-link" data-offset="90"><i class="fa fa-fw fa-phone"></i> <span id='mobile'> Mobile </span> </span>
+                                </li>
+                                <li class="nav-item">
+                                    <span class="nav-link" data-offset="90"><i class="fa fa-fw fa-envelope"></i> <span id='email'> Email </span> </span>
+                                </li>
+                                <li class="nav-item">
+                                    <span class="nav-link" id="signoutbtn" role="button" onclick="signOut()" data-offset="90"><i class="fa fa-fw fa-sign-in"></i> Log Out </span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="signinbtn" href="signin.html" data-offset="90"><i class="fa fa-fw fa-sign-in"></i> Login </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="signupbtn" href="signup.html" data-offset="90"><i class="fa fa-fw fa-user"></i> Sign Up </a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item">
+                            <a class="nav-link" id="adminLoginBtn" href="adminLogin.html" data-offset="90"><i class="fa fa-fw fa-user"></i> Admin Login </a>
+                        </li>
+                        <li class="dropdown nav-item" id="adminProfileBtn">
+                            <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#"><i class="fa fa-fw fa-user"></i> Admin Profile
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu mr-auto smooth-scroll" style="width: 270px;">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="allApplications.html" data-offset="90"><i class="fa fa-fw fa-pencil-square"></i> All Applications </a>
+                                </li>
+                                <li class="nav-item">
+                                    <span class="nav-link" data-offset="90"><i class="fa fa-fw fa-envelope"></i> <span id='adminEmail'> Email </span> </span>
+                                </li>
+                                <li class="nav-item">
+                                    <span class="nav-link" id="adminSignoutbtn" role="button" onclick="adminSignOut()" data-offset="90"><i class="fa fa-fw fa-sign-in"></i> Admin Log Out </span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <div class="container-fluid" style="margin-top: 5rem;">
+        <h1>Job Applications</h1>
+        <table id="jobApplicationsTable" class="display">
+            <thead>
+                <tr>
+                    <th class="hidden">Job Id</th>
+                    <th>Company Name</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table data will be injected by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
