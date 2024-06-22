@@ -64,7 +64,7 @@ function renderAcceptedJobApplicationsTable(jobApplications) {
         row.appendChild(cellRole);
 
         var cellResume = document.createElement('td');
-        cellResume.innerHTML = '<button class="resume-button" onclick=getResume(this)>Resume</button>';
+        cellResume.innerHTML = '<button class="resume-button collapsed" onclick=getResume(this) data-toggle="modal" data-target="#exampleModal" aria-expanded="false" aria-controls="collapseTwo">Resume</button>';
         row.appendChild(cellResume);
 
         tableBody.appendChild(row);
@@ -103,7 +103,7 @@ function renderRejectedJobApplicationsTable(jobApplications) {
         row.appendChild(cellRole);
 
         var cellResume = document.createElement('td');
-        cellResume.innerHTML = '<button class="resume-button" onclick=getResume(this)>Resume</button>';
+        cellResume.innerHTML = '<button class="resume-button collapsed" onclick=getResume(this) data-toggle="modal" data-target="#exampleModal" aria-expanded="false" aria-controls="collapseTwo">Resume</button>';
         row.appendChild(cellResume);
 
         tableBody.appendChild(row);
@@ -142,7 +142,7 @@ function renderPendingJobApplicationsTable(jobApplications) {
         row.appendChild(cellRole);
 
         var cellResume = document.createElement('td');
-        cellResume.innerHTML = '<button class="resume-button" onclick=getResume(this)>Resume</button>';
+        cellResume.innerHTML = '<button class="resume-button collapsed" onclick=getResume(this) data-toggle="modal" data-target="#exampleModal" aria-expanded="false" aria-controls="collapseTwo">Resume</button>';
         row.appendChild(cellResume);
 
         var cellAccept = document.createElement('td');

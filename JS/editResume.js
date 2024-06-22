@@ -49,14 +49,85 @@ $(document).ready(function() {
     document.getElementById('responsibilities').addEventListener('input', function() {
         const responsibilities = this.value.split('\n');
         const responsibilitiesList = document.getElementById('display-responsibilities');
-        responsibilitiesList.innerHTML = ''; // Clear previous responsibilities
+        responsibilitiesList.innerHTML = '';
         responsibilities.forEach(responsibility => {
             const li = document.createElement('li');
             li.innerText = responsibility;
             responsibilitiesList.appendChild(li);
         });
     });
+
+    fillValuesFromSavedResume();
 });
+
+function fillValuesFromSavedResume() {
+    const userId = JSON.parse(localStorage.getItem('signedInUser')).userId;
+    const formData = {
+        userId: userId
+    }
+    $.ajax({
+        url: 'http://localhost:8080/JobPortalBackend/webapi/myresource/getResumeByUserId',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(formData),
+        success: function(response) {
+            if (response.name !== null) {
+                document.getElementById('name').value = response.name;
+                document.getElementById('display-name').innerText = response.name || 'Applicant Name';
+            }
+            if (response.dob !== null) {
+                document.getElementById('dob').value = response.dob;
+                document.getElementById('display-dob').innerText = `Date of Birth: ${response.dob}`;
+            }
+            if (response.email !== null) {
+                document.getElementById('email2').value = response.email;
+                document.getElementById('display-email').innerText = `Email: ${response.email}`;
+            }
+            if (response.institutionName !== null) {
+                document.getElementById('institutionName').value = response.institutionName;
+                document.getElementById('display-institution').innerText = response.institutionName || 'Institution Name';
+            }
+            if (response.degree !== null) {
+                document.getElementById('degree').value = response.degree;
+                document.getElementById('display-degree').innerText = `Degree: ${response.degree}`;
+            }
+            if (response.yearOfGraduation !== null) {
+                document.getElementById('yearOfGraduation').value = response.yearOfGraduation;
+                document.getElementById('display-grad-year').innerText = `Year of Graduation: ${response.yearOfGraduation}`;
+            }
+            if (response.companyName !== null) {
+                document.getElementById('companyName').value = response.companyName;
+                document.getElementById('display-company').innerText = response.companyName || 'Company Name';
+            }
+            if (response.role !== null) {
+                document.getElementById('role').value = response.role;
+                document.getElementById('display-role').innerText = `Role: ${response.role}`;
+            }
+            if (response.duration !== null) {
+                document.getElementById('duration').value = response.duration;
+                document.getElementById('display-duration').innerText = `Duration: ${response.duration}`;
+            }
+            if (response.responsibilities) {
+                document.getElementById('responsibilities').value = response.responsibilities;
+                const responsibilities = response.responsibilities.split('\n');
+                const responsibilitiesList = document.getElementById('display-responsibilities');
+                responsibilitiesList.innerHTML = '';
+                responsibilities.forEach(responsibility => {
+                    const li = document.createElement('li');
+                    li.innerText = responsibility;
+                    responsibilitiesList.appendChild(li);
+                });
+            }
+        },
+        error: function(xhr, status, error) {
+            failureAlert.innerText = 'Error: ' + error;
+            failureAlert.style.display = 'block';
+            setTimeout(function() {
+                dismissAlert('failureAlert')
+            }, 1000);
+        }
+    });
+}
 
 function saveResume() {
     const successAlert = document.getElementById('successAlert');
@@ -64,7 +135,6 @@ function saveResume() {
     successAlert.style.display = 'none';
     failureAlert.style.display = 'none';
 
-    const signedInUser = localStorage.getItem('signedInUser');
     const userId = JSON.parse(localStorage.getItem('signedInUser')).userId;
 
     const name = document.getElementById('name').value.trim();

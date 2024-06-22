@@ -100,97 +100,99 @@
         </header>
 
         <main>
-            <form id="resume-form">
-                <section class="intro-section pt-3 mt-4">
-                    <div class="container resume-container" style="margin-top: 4rem;">
-                        <div class="row" style="align-items: center;">
-                            <div class="col-4">
+            <section class="intro-section pt-3 mt-4">
+                <div class="alert alert-success text-center w-50" role="alert" id="successAlert" style="position: fixed; top: 100px; z-index:100; margin-left: 7%;"></div>
+                <div class="alert alert-danger text-center w-50" role="alert" id="failureAlert" style="position: fixed; top: 100px; z-index:100; margin-left: 7%;"></div>
+                <div class="container resume-container" style="margin-top: 4rem;">
+                    <div class="row" style="align-items: center;">
+                        <div class="col-4">
+                            <form id="resume-form">
                                 <div class="row">
                                     <div class="col-4">
-                                    <h6>Name</h6>
+                                        <h6>Name</h6>
                                     </div>
-                                <div class="col-8">
-                                    <input class="w-100" type="text" id="name" name="name">
+                                    <div class="col-8">
+                                        <input class="w-100" type="text" id="name" name="name">
+                                    </div>
+                                    <div class="col-4 mt-3">
+                                        <h6>DOB </h6>
+                                    </div>
+                                    <div class="col-8 mt-2 mb-2">
+                                        <input class="w-100" type="date" id="dob" name="dob">
+                                    </div>
+                                    <div class="col-4 mt-2">
+                                        <h6>E-mail</h6>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="w-100" type="text" id="email2" name="email2">
+                                    </div>
+                                    <div class="col-4 mt-2">
+                                        <h6>InstitutionName </h6>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="w-100" type="text" id="institutionName" name="institutionName">
+                                    </div>
+                                    <div class="col-4 mt-2">
+                                        <h6>Degree </h6>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="w-100" type="text" id="degree" name="degree">
+                                    </div>
+                                    <div class="col-4 mt-2">
+                                        <h6>Year of Graduation </h6>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="w-100" type="text" id="yearOfGraduation" name="yearOfGraduation">
+                                    </div>
+                                    <div class="col-4 mt-2">
+                                        <h6>Company Name </h6>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="w-100" type="text" id="companyName" name="companyName">
+                                    </div>
+                                    <div class="col-4 mt-2">
+                                        <h6>Role </h6>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="w-100" type="text" id="role" name="role">
+                                    </div>
+                                    <div class="col-4 mt-2">
+                                        <h6>Duration </h6>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="w-100" type="text" id="duration" name="duration">
+                                    </div>
+                                    <div class="col-4 mt-2">
+                                        <h6>Responsibilities </h6>
+                                    </div>
+                                    <div class="col-8">
+                                        <textarea class="w-100" style="height: 100px;" id="responsibilities" name="responsibilities"></textarea>
+                                    </div>
                                 </div>
-                                <div class="col-4 mt-2">
-                                    <h6>DOB </h6>
+                                <div style="text-align: center;" class="mt-4">
+                                    <button type="button" class="btn btn-outline-success" onclick="saveResume()">Save Resume</button>
                                 </div>
-                                <div class="col-8 mt-2 mb-2">
-                                    <input class="w-100" type="date" id="dob" name="dob">
-                                </div>
-                                <div class="col-4 mt-2">
-                                    <h6>email</h6>
-                                </div>
-                                <div class="col-8">
-                                    <input class="w-100" type="text" id="email2" name="email2">
-                                </div>
-                                <div class="col-4 mt-2">
-                                    <h6>InstitutionName </h6>
-                                </div>
-                                <div class="col-8">
-                                    <input class="w-100" type="text" id="institutionName" name="institutionName">
-                                </div>
-                                <div class="col-4 mt-2">
-                                    <h6>Degree </h6>
-                                </div>
-                                <div class="col-8">
-                                    <input class="w-100" type="text" id="degree" name="degree">
-                                </div>
-                                <div class="col-4 mt-2">
-                                    <h6>Year of Graduation </h6>
-                                </div>
-                                <div class="col-8">
-                                    <input class="w-100" type="text" id="yearOfGraduation" name="yearOfGraduation">
-                                </div>
-                                <div class="col-4 mt-2">
-                                    <h6>Company Name </h6>
-                                </div>
-                                <div class="col-8">
-                                    <input class="w-100" type="text" id="companyName" name="companyName">
-                                </div>
-                                <div class="col-4 mt-2">
-                                    <h6>Role </h6>
-                                </div>
-                                <div class="col-8">
-                                    <input class="w-100" type="text" id="role" name="role">
-                                </div>
-                                <div class="col-4 mt-2">
-                                    <h6>Duration </h6>
-                                </div>
-                                <div class="col-8">
-                                    <input class="w-100" type="text" id="duration" name="duration">
-                                </div>
-                                <div class="col-4 mt-2">
-                                    <h6>Responsibilities </h6>
-                                </div>
-                                <div class="col-8">
-                                    <textarea class="w-100" style="height: 100px;" id="responsibilities" name="responsibilities"></textarea>
-                                </div>
-                            </div>
-                            <button type="button" onclick="saveResume()">Save Resume</button>
-                            <div class="alert alert-success text-center w-50" role="alert" id="successAlert" style="position: fixed; top: 100px; z-index:100; margin-left: 7%;"></div>
-                            <div class="alert alert-danger text-center w-50" role="alert" id="failureAlert" style="position: fixed; top: 100px; z-index:100; margin-left: 7%;"></div>
-                        </form>
+                            </form>
                         </div>
-                        <div class="col-8">
-                            <div>
+                        <div class="col-6" style="margin-left: 150px;">
+                            <div class="p-4" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                                 <header>
-                                    <h1 id="display-name">Applicant Name</h1>
-                                    <p id="display-dob">Date of Birth: </p>
+                                    <h1 id="display-name" style="text-align: center;">Applicant Name</h1>
+                                    <p id="display-dob" class="mt-4">Date of Birth: </p>
                                     <p id="display-email">Email: </p>
                                 </header>
-                                <section>
+                                <section class="mt-4">
                                     <h2>Education</h2>
-                                    <div class="education">
-                                        <h3 id="display-institution">Institution Name</h3>
+                                    <div class="education mt-3">
+                                        <h4 id="display-institution">Institution Name</h4>
                                         <p id="display-degree">Degree: </p>
                                         <p id="display-grad-year">Year of Graduation: </p>
                                     </div>
                                 </section>
-                                <section>
+                                <section class="mt-4">
                                     <h2>Experience</h2>
-                                    <div class="experience">
-                                        <h3 id="display-company">Company Name</h3>
+                                    <div class="experience mt-3">
+                                        <h4 id="display-company">Company Name</h4>
                                         <p id="display-role">Role: </p>
                                         <p id="display-duration">Duration: </p>
                                         <p>Responsibilities:</p>
