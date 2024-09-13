@@ -242,46 +242,38 @@
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
               <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Fill Company Details Here</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-4">
-                                <h6>Company Name</h6>
-                            </div>
-                            <div class="col-8">
-                                <input class="w-100" type="text" id="companyName" name="companyName">
-                            </div>
-                            <div class="col-4 mt-2">
-                                <h6>Company Description</h6>
-                            </div>
-                            <div class="col-8 mt-2">
-                                <textarea id="companyDescription" name="companyDescription" class="w-100"></textarea>
-                            </div>
-                            <div class="col-4 mt-2">
-                                <h6>Location</h6>
-                            </div>
-                            <div class="col-8">
-                                <input class="w-100" type="text" id="location" name="location">
-                            </div>
-                            <div class="col-4 mt-2">
-                                <h6>Image URL</h6>
-                            </div>
-                            <div class="col-8">
-                                <input class="w-100" type="text" id="imageUrl" name="imageUrl">
-                            </div>
-                      </div>
+                        <div class="p-4" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                            <header>
+                                <h1 id="display-name" style="text-align: center;">Applicant Name</h1>
+                                <p id="display-dob" class="mt-4">Date of Birth: </p>
+                                <p id="display-email">Email: </p>
+                            </header>
+                            <section class="mt-4">
+                                <h2>Education</h2>
+                                <div class="education mt-3">
+                                    <h4 id="display-institution">Institution Name</h4>
+                                    <p id="display-degree">Degree: </p>
+                                    <p id="display-grad-year">Year of Graduation: </p>
+                                </div>
+                            </section>
+                            <section class="mt-4">
+                                <h2>Experience</h2>
+                                <div class="experience mt-3">
+                                    <h4 id="display-company">Company Name</h4>
+                                    <p id="display-role">Role: </p>
+                                    <p id="display-duration">Duration: </p>
+                                    <p>Responsibilities:</p>
+                                    <ul id="display-responsibilities"></ul>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" onclick="addCompany()">Add Company</button>
                 </div>
-              </div>
             </div>
         </div>
     </div>

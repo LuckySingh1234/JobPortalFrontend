@@ -27,7 +27,7 @@ function renderAllCards() {
                     const cardHtml = `
                         <div class="col-md-3 mb-5 ml-5">
                             <div class="card">
-                                <img src="${item.imageUrl}" />
+                                <img crossorigin="anonymous" src="${item.imageUrl}" />
                                 <p class="heading">
                                 ${item.companyName}
                                 </p>
